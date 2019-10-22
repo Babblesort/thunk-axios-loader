@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import questionsReducer from './reducers/questions';
+import questionsReducer from './reducers/questions-reducer';
 import Questions from './Questions';
 import './App.css';
 
