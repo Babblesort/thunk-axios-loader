@@ -1,18 +1,19 @@
 body {
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
 .questions {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   height: 100vh;
+  margin-top: 5em;
 }
 
 button {
   font-size: 1.5em;
   color: blue;
+  border-radius: 5px;
 }
 .questions-list {
   color: darkgreen;
