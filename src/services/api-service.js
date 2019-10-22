@@ -1,10 +1,10 @@
-const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
-
 const fakeQuestions = [
   'What is love?',
   'What is your favorite color?',
   'How many roads must one walk?'
 ];
+
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 export const fetchQuestions = callCount => {
   if (callCount % 2 === 0) {
