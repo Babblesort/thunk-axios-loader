@@ -6,22 +6,34 @@ export const beginLoadingQuestions = () => ({
 });
 
 export const LOAD_QUESTIONS_SUCCESS = 'LOAD_QUESTIONS_SUCCESS';
-export const loadQuestionsSuccess = questions => ({
-  type: LOAD_QUESTIONS_SUCCESS,
-  questions
-});
+export const loadQuestionsSuccess = questions => {
+  return {
+    type: LOAD_QUESTIONS_SUCCESS,
+    questions
+  };
+};
 
 export const LOAD_QUESTIONS_ERROR = 'LOAD_QUESTIONS_ERROR';
-export const loadQuestionsError = () => ({
-  type: LOAD_QUESTIONS_ERROR
+export const loadQuestionsError = message => ({
+  type: LOAD_QUESTIONS_ERROR,
+  message
 });
 
-export const loadQuestionsThunk = callCount => async dispatch => {
+export const loadQuestionsThunk = () => async dispatch => {
   try {
     dispatch(beginLoadingQuestions());
-    const questions = await fetchQuestions(callCount);
-    dispatch(loadQuestionsSuccess(questions));
+    const questionsResponse = await fetchQuestions();
+    dispatch(loadQuestionsSuccess(questionsResponse.data));
   } catch (error) {
     dispatch(loadQuestionsError());
   }
 };
+
+// export const loadQuestionsThunkPromiseBased = () => dispatch => {
+//   dispatch(beginLoadingQuestions());
+//   fetchQuestions()
+//     .then(questionsResponse =>
+//       dispatch(loadQuestionsSuccess(questionsResponse.data))
+//     )
+//     .catch(() => dispatch(loadQuestionsError()));
+// };
