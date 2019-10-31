@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { loadQuestionsThunk } from './actions/questions-actions';
 
@@ -8,14 +8,9 @@ const Questions = ({
   isLoadingQuestions,
   hasLoadingQuestionsError
 }) => {
-  const [apiCallCount, setApiCallCount] = useState(0);
-  const handleClick = () => {
-    setApiCallCount(apiCallCount + 1);
-    loadQuestions(apiCallCount);
-  };
   return (
     <div className="questions">
-      <button onClick={handleClick}>Load Questions</button>
+      <button onClick={loadQuestions}>Load Questions</button>
 
       {isLoadingQuestions && <p className="loading-message">Loading...</p>}
 
@@ -24,11 +19,18 @@ const Questions = ({
       )}
 
       {questions.length > 0 && (
-        <ol className="questions-list">
-          {questions.map(q => (
-            <li>{q}</li>
-          ))}
-        </ol>
+        <div className="questions-list">
+          <ul>
+            {questions.map(q => (
+              <li key={q.questionNumber}>
+                <p>
+                  {q.questionNumber}: {q.questionTopic}
+                </p>
+                <span>{q.questionText}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );
