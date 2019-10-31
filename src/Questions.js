@@ -19,15 +19,18 @@ const Questions = ({
       )}
 
       {questions.length > 0 && (
-        <p className="questions-list">
-          {questions.map(q => (
-            <ul>
-              <li>{q.questionNumber}</li>
-              <li>{q.questionTopic}</li>
-              <li>{q.questionText}</li>
-            </ul>
-          ))}
-        </p>
+        <div className="questions-list">
+          <ul>
+            {questions.map(q => (
+              <li key={q.questionNumber}>
+                <p>
+                  {q.questionNumber}: {q.questionTopic}
+                </p>
+                <span>{q.questionText}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );
