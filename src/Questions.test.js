@@ -38,7 +38,7 @@ describe('Questions component backed by redux with mock api calls', () => {
     // wait for next tick of the event loop so promises can all resolve
     await wait();
 
-    expect(getByText('Error Loading Questions')).toBeDefined();
+    expect(getByText('Error Loading Questions')).toBeInTheDocument();
   });
 
   test('shows questions when api call succeeds', async () => {
