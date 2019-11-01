@@ -18,26 +18,26 @@ describe('Questions component backed by redux with mock api calls', () => {
   });
 
   afterEach(() => {
-    mockFetchQuestions.mockRestore();
+    jest.restoreAllMocks();
   });
 
-  test('shows error message when api call fails', async () => {
-    mockFetchQuestions.mockReturnValue(Promise.reject(Error('broke')));
-
-    const { container, getByText } = render(
+  const renderComponent = () =>
+    render(
       <Provider store={store}>
         <Questions />
       </Provider>
     );
 
+  test('shows error message when api call fails', async () => {
+    mockFetchQuestions.mockReturnValue(Promise.reject(Error('broke')));
+
+    const { container, getByText } = renderComponent();
     const submitButton = container.querySelector('button');
     fireEvent.click(submitButton);
 
-    expect(mockFetchQuestions).toHaveBeenCalledTimes(1);
-
     // wait for next tick of the event loop so promises can all resolve
     await wait();
-
+    expect(mockFetchQuestions).toHaveBeenCalledTimes(1);
     expect(getByText('Error Loading Questions')).toBeInTheDocument();
   });
 
@@ -59,18 +59,13 @@ describe('Questions component backed by redux with mock api calls', () => {
       })
     );
 
-    const { container, getByText } = render(
-      <Provider store={store}>
-        <Questions />
-      </Provider>
-    );
+    const { container, getByText } = renderComponent();
     const submitButton = container.querySelector('button');
     fireEvent.click(submitButton);
 
-    expect(mockFetchQuestions).toHaveBeenCalledTimes(1);
-
     // wait for next tick of the event loop so promises can all resolve
     await wait();
+    expect(mockFetchQuestions).toHaveBeenCalledTimes(1);
 
     expect(container.querySelectorAll('li')).toHaveLength(2);
     expect(getByText('1: blah')).toBeInTheDocument();
