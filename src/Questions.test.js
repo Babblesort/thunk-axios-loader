@@ -8,17 +8,17 @@ import thunk from 'redux-thunk';
 import questionsReducer from './reducers/questions-reducer';
 import * as apiService from './services/api-service';
 
-const mockFetchQuestions = jest.fn();
-apiService.fetchQuestions = mockFetchQuestions;
-
 describe('Questions component backed by redux with mock api calls', () => {
   let store;
+  let mockFetchQuestions;
+
   beforeEach(() => {
     store = createStore(questionsReducer, applyMiddleware(thunk));
+    mockFetchQuestions = jest.spyOn(apiService, 'fetchQuestions');
   });
 
   afterEach(() => {
-    mockFetchQuestions.mockClear();
+    mockFetchQuestions.mockRestore();
   });
 
   test('shows error message when api call fails', async () => {
