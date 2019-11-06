@@ -27,3 +27,40 @@ button {
 .error-message {
   color: darkred;
 }
+
+.user-info {
+  width: 40rem;
+  margin-bottom: 5rem;
+  padding: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.circle {
+  height: 80px;
+  width: 80px;
+  border: 1px solid blue;
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: blue;
+  border-radius: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-button {
+  width: 10rem;
+  color: black;
+}
+
+.login-button.logged-in {
+  background-color: rgba(180, 0, 0, 0.3);
+}
+
+.login-button.logged-out {
+  background-color: rgba(0, 180, 0, 0.3);
+}
