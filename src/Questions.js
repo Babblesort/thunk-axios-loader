@@ -11,6 +11,7 @@ const Questions = ({
 }) => (
   <div className="questions">
     <UserDisplay />
+
     <button onClick={loadQuestions}>Load Questions</button>
 
     {isLoadingQuestions && <p className="loading-message">Loading...</p>}
